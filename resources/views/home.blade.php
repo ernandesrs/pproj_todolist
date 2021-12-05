@@ -1,6 +1,6 @@
 @extends("layouts.site")
 
-@section('title', 'Simples e rápido gerenciador de tarefas diárias | TodoList')
+@section('title', 'Simples e rápido gerenciador de tarefas diárias')
 
 @section('content')
     <section class="d-flex align-items-center h-100">
