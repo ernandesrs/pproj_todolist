@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TodosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
+});
+
+
+Route::prefix("tarefas")->group(function () {
+    Route::get("/", [TodosController::class, "index"])->name("todos.index");
 });
