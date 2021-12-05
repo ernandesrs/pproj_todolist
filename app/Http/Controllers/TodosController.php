@@ -9,8 +9,27 @@ class TodosController extends Controller
     //
     public function index()
     {
+        $todos = [
+            0 => (object) [
+                "id" => 1,
+                "done" => false,
+                "title" => "Lorem ipsum dolor sit amet consectetur"
+            ],
+            1 => (object) [
+                "id" => 2,
+                "done" => false,
+                "title" => "Voluptatum aliquid, nesciunt magnam"
+            ],
+            2 => (object) [
+                "id" => 3,
+                "done" => true,
+                "title" => "Exercitationem laboriosam quia deserunt odit"
+            ],
+        ];
+
         return view("todos.list", [
-            "title" => "Lista de tarefas"
+            "title" => "Lista de tarefas",
+            "todos" => $todos
         ]);
     }
 

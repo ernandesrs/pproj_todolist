@@ -27,7 +27,7 @@
 
 <body>
     <main class="main">
-        <div class="container d-flex align-items-center h-100">
+        <div class="container d-flex justify-content-center align-items-center h-100">
             <div class="row justify-content-center w-100">
                 <div class="col-12 col-md-8 col-lg-6">
                     <div class="card">
