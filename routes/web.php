@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', [
+        "title" => "Simples e rápido gerenciador de tarefas diárias"
+    ]);
 });
 
 

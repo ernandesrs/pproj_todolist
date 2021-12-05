@@ -1,6 +1,6 @@
 @extends("layouts.todos");
 
-@section('title', 'Lista de tarefas')
+@section('title', $title)
 
 @section('content')
 @endsection

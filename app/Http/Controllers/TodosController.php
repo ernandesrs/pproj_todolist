@@ -9,7 +9,9 @@ class TodosController extends Controller
     //
     public function index()
     {
-        return view("todos.list");
+        return view("todos.list", [
+            "title" => "Lista de tarefas"
+        ]);
     }
 
     public function new()
