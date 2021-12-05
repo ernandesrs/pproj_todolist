@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Todo;
 use Illuminate\Http\Request;
 
 class TodosController extends Controller
@@ -9,23 +10,7 @@ class TodosController extends Controller
     //
     public function index()
     {
-        $todos = [
-            0 => (object) [
-                "id" => 1,
-                "done" => false,
-                "title" => "Lorem ipsum dolor sit amet consectetur"
-            ],
-            1 => (object) [
-                "id" => 2,
-                "done" => false,
-                "title" => "Voluptatum aliquid, nesciunt magnam"
-            ],
-            2 => (object) [
-                "id" => 3,
-                "done" => true,
-                "title" => "Exercitationem laboriosam quia deserunt odit"
-            ],
-        ];
+        $todos = Todo::all();
 
         return view("todos.list", [
             "title" => "Lista de tarefas",
@@ -43,6 +28,28 @@ class TodosController extends Controller
 
     public function create(Request $request)
     {
+        $title = $request->get("title", null);
+
+        if (empty($title)) {
+            return redirect()->route("todos.new")->with("message", [
+                "type" => "danger",
+                "message" => "Informe um título para sua tarefa"
+            ]);
+        }
+
+        $todo = new Todo();
+        $todo->title = $title;
+        if (!$todo->save()) {
+            return redirect()->route("todos.index")->with("message", [
+                "type" => "danger",
+                "message" => "Erro interno ao criar a tarefa"
+            ]);
+        }
+
+        return redirect()->route("todos.index")->with("message", [
+            "type" => "success",
+            "message" => "Tarefa '{$todo->title}' criada"
+        ]);
     }
 
     public function edit($id)

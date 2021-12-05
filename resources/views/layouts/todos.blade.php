@@ -7,9 +7,9 @@
 
     <title>@yield("title") | TodoList</title>
 
-    <link rel="stylesheet" href="{{ asset("css/boxicons.css") }}">
-    <link rel="stylesheet" href="{{ asset("css/bootstrap.css") }}">
-    
+    <link rel="stylesheet" href="{{ asset('css/boxicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+
     <style>
         body {
             display: grid;
@@ -36,12 +36,17 @@
                                 @yield("title")
                             </h1>
 
-                            <a class="btn btn-sm btn-success ml-auto" href="{{ route("todos.new") }}" title="Criar nova tarefa">
+                            <a class="btn btn-sm btn-success ml-auto" href="{{ route('todos.new') }}"
+                                title="Criar nova tarefa">
                                 <i class="bx bx-plus"></i>
                             </a>
                         </div>
 
                         <div class="card-body shadow">
+                            @if (session('message'))
+                                {{ session('message')['message'] }}
+                            @endif
+
                             @yield("content")
                         </div>
                     </div>
