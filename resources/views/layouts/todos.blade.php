@@ -7,14 +7,9 @@
 
     <title>@yield("title") | TodoList</title>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-    {{-- Boxicons --}}
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-
-    {{-- Bootstrap --}}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset("css/boxicons.css") }}">
+    <link rel="stylesheet" href="{{ asset("css/bootstrap.css") }}">
+    
     <style>
         body {
             display: grid;
