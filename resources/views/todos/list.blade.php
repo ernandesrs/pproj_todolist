@@ -17,7 +17,8 @@
                 @foreach ($todos as $key => $todo)
                     <tr>
                         <td class="text-right" style="width: 75px; font-size: 0.785rem">
-                            <a class="text-{{ $todo->done ? 'success' : 'danger' }}" href="#">
+                            <a class="text-{{ $todo->done ? 'success' : 'danger' }}"
+                                href="{{ route('todos.done', ['id' => $todo->id]) }}">
                                 @if ($todo->done)
                                     <i class="bx bx-check-circle"></i> Feita
                                 @else
@@ -34,7 +35,8 @@
                                 <i class="bx bx-edit"></i>
                             </a>
                             <span class="mx-1"></span>
-                            <a class="btn btn-sm btn-danger" href="{{ route('todos.delete', ['id' => $todo->id]) }}" title="Excluir esta tarefa">
+                            <a class="btn btn-sm btn-danger" href="{{ route('todos.delete', ['id' => $todo->id]) }}"
+                                title="Excluir esta tarefa">
                                 <i class="bx bx-trash"></i>
                             </a>
                         </td>

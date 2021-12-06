@@ -117,4 +117,28 @@ class TodosController extends Controller
             "message" => "Sua tarefa foi excluída com sucesso"
         ]);
     }
+
+    public function done($id)
+    {
+        $todo = Todo::find($id);
+        if (!$todo) {
+            return redirect()->route("todos.index")->with("message", [
+                "type" => "error",
+                "message" => "Tarefa não existe ou já foi excluída"
+            ]);
+        }
+
+        $todo->done = $todo->done ? false : true;
+        if (!$todo->save()) {
+            return redirect()->route("todos.index")->with("message", [
+                "type" => "error",
+                "message" => "Erro interno ao atualizar sua tarefa"
+            ]);
+        }
+
+        return redirect()->route("todos.index")->with("message", [
+            "type" => "info",
+            "message" => "Status da tarefa atualizada com sucesso"
+        ]);
+    }
 }
