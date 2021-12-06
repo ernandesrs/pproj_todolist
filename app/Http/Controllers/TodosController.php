@@ -4,9 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TodosController extends Controller
 {
+    public function __construct()
+    {
+        var_dump(get_class_methods(Auth()));
+        var_dump(get_class_methods(Auth()));
+        var_dump(get_class_methods(Auth()));
+        var_dump(get_class_methods(Auth()));
+        var_dump(get_class_methods(Auth()));
+        return;
+
+        $this->middleware("auth");
+    }
+
     //
     public function index()
     {
