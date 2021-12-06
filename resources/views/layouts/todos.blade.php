@@ -44,12 +44,12 @@
 
                         <div class="card-body shadow">
                             @if (session('message'))
-                                @component('components.message')
+                                <x-messageBox>
                                     @slot('type')
                                         {{ session('message')['type'] }}
                                     @endslot
                                     {{ session('message')['message'] }}
-                                @endcomponent
+                                </x-messageBox>
                             @endif
 
                             @yield("content")
