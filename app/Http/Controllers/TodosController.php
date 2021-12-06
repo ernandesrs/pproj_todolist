@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class TodosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
+
     //
     public function index()
     {
@@ -55,7 +60,7 @@ class TodosController extends Controller
     public function edit($id)
     {
         $todo = Todo::find($id);
-        if(!$todo) {
+        if (!$todo) {
             return redirect()->route("todos.index")->with("message", [
                 "type" => "danger",
                 "message" => "Tarefa não existe ou foi excluída"
