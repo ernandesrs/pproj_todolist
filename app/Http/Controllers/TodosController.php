@@ -42,7 +42,7 @@ class TodosController extends Controller
         if (!$todo->save()) {
             return redirect()->route("todos.index")->with("message", [
                 "type" => "danger",
-                "message" => "Erro interno ao criar a tarefa"
+                "message" => "Erro interno ao criar sua tarefa"
             ]);
         }
 
@@ -75,7 +75,7 @@ class TodosController extends Controller
 
         $todo = Todo::find($id);
         if (!$todo) {
-            return redirect()->route("todos.edit", ["id" => $id])->with("message", [
+            return redirect()->route("todos.index")->with("message", [
                 "type" => "error",
                 "message" => "Tarefa não existe ou foi excluída"
             ]);
@@ -99,14 +99,14 @@ class TodosController extends Controller
     {
         $todo = Todo::find($id);
         if (!$todo) {
-            return redirect()->route("todos.edit", ["id" => $id])->with("message", [
+            return redirect()->route("todos.index")->with("message", [
                 "type" => "error",
                 "message" => "Tarefa não existe ou já foi excluída"
             ]);
         }
 
         if (!$todo->delete()) {
-            return redirect()->route("todos.edit", ["id" => $id])->with("message", [
+            return redirect()->route("todos.index")->with("message", [
                 "type" => "error",
                 "message" => "Erro interno ao excluir sua tarefa"
             ]);
