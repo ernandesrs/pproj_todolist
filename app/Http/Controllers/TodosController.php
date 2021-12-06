@@ -54,13 +54,44 @@ class TodosController extends Controller
 
     public function edit($id)
     {
+        $todo = Todo::find($id);
+
         return view("todos.edit", [
             "title" => "Editar tarefa",
             "action" => "edit",
+            "todo" => $todo
         ]);
     }
 
     public function update(Request $request, $id)
     {
+        $title = $request->get("title", null);
+        if (!$title) {
+            return redirect()->route("todos.edit", ["id" => $id])->with("message", [
+                "type" => "error",
+                "message" => "Informe um título para sua tarefa"
+            ]);
+        }
+
+        $todo = Todo::find($id);
+        if (!$todo) {
+            return redirect()->route("todos.edit", ["id" => $id])->with("message", [
+                "type" => "error",
+                "message" => "Tarefa não existe ou foi excluída"
+            ]);
+        }
+
+        $todo->title = $title;
+        if (!$todo->save()) {
+            return redirect()->route("todos.edit", ["id" => $id])->with("message", [
+                "type" => "error",
+                "message" => "Erro interno ao atualizar sua tarefa"
+            ]);
+        }
+
+        return redirect()->route("todos.edit", ["id" => $id])->with("message", [
+            "type" => "info",
+            "message" => "Sua tarefa foi atualizada com sucesso"
+        ]);
     }
 }

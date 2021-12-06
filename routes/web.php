@@ -26,6 +26,6 @@ Route::prefix("tarefas")->group(function () {
     Route::get("/nova", [TodosController::class, "new"])->name("todos.new");
     Route::post("/nova", [TodosController::class, "create"])->name("todos.create");
 
-    Route::get("/editar", [TodosController::class, "edit"])->name("todos.edit");
-    Route::post("/editar", [TodosController::class, "update"])->name("todos.update");
+    Route::get("/editar/{id}", [TodosController::class, "edit"])->name("todos.edit");
+    Route::post("/editar/{id}", [TodosController::class, "update"])->name("todos.update");
 });

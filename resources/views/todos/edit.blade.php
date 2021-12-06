@@ -3,12 +3,14 @@
 @section('title', 'Lista de tarefas')
 
 @section('content')
-    <form action="{{ $action == 'new' ? route('todos.create') : route('todos.update') }}" method="post">        
+    <form action="{{ $action == 'new' ? route('todos.create') : route('todos.update', ['id' => $todo->id]) }}"
+        method="post">
         @csrf
 
         <div class="form-group">
             <label for="title">Título da tarefa</label>
-            <input class="form-control form-control-sm" type="text" name="title" id="title">
+            <input class="form-control form-control-sm" type="text" name="title" id="title"
+                value="{{ $action == 'edit' ? $todo->title : null }}">
         </div>
 
         <div class="d-flex mt-2">

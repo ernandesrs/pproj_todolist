@@ -21,7 +21,7 @@
                                 @if ($todo->done)
                                     <i class="bx bx-check-circle"></i> Feita
                                 @else
-                                <i class="bx bx-x-circle"></i> Não feita
+                                    <i class="bx bx-x-circle"></i> Não feita
                                 @endif
                             </a>
                         </td>
@@ -29,9 +29,10 @@
                             {{ $todo->title }}
                         </td>
                         <td class="d-flex">
-                            <button class="btn btn-sm btn-info">
+                            <a class="btn btn-sm btn-info" href="{{ route('todos.edit', ['id' => $todo->id]) }}"
+                                title="Editar esta tarefa">
                                 <i class="bx bx-edit"></i>
-                            </button>
+                            </a>
                             <span class="mx-1"></span>
                             <button class="btn btn-sm btn-danger">
                                 <i class="bx bx-trash"></i>
