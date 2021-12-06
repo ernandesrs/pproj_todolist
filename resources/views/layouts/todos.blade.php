@@ -31,15 +31,33 @@
             <div class="row justify-content-center w-100">
                 <div class="col-12 col-md-8 col-lg-6">
                     <div class="card">
-                        <div class="card-header d-flex">
-                            <h1 class="h5 m-0">
-                                @yield("title")
-                            </h1>
+                        <div class="card-header">
+                            <div class="pb-3 d-flex" style="font-size: 0.785rem">
+                                <span class="d-flex align-items-center">
+                                    <i class="bx bxs-user mr-2"></i> {{ Auth::user()->name }}
+                                </span>
+                                <span class="ml-auto">
+                                    <a class="text-dark" href="{{ route('logout') }}" title="Sair da conta" onclick="event.preventDefault();
+                                                  document.getElementById('logout-form').submit();">
+                                        <i class="bx bx-log-out"></i> <span>Sair</span>
+                                    </a>
 
-                            <a class="btn btn-sm btn-success ml-auto" href="{{ route('todos.new') }}"
-                                title="Criar nova tarefa">
-                                <i class="bx bx-plus"></i>
-                            </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+                                </span>
+                            </div>
+                            <div class="d-flex">
+                                <h1 class="h5 m-0">
+                                    @yield("title")
+                                </h1>
+
+                                <a class="btn btn-sm btn-success ml-auto" href="{{ route('todos.new') }}"
+                                    title="Criar nova tarefa">
+                                    <i class="bx bx-plus"></i>
+                                </a>
+                            </div>
                         </div>
 
                         <div class="card-body shadow">
@@ -60,8 +78,8 @@
         </div>
     </main>
 
-    <script src="{{ asset("js/jquery.min.js") }}"></script>
-    <script src="{{ asset("js/bootstrap.bundle.min.js") }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>
