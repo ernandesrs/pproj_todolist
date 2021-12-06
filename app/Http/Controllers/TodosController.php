@@ -10,7 +10,7 @@ class TodosController extends Controller
     //
     public function index()
     {
-        $todos = Todo::all();
+        $todos = Todo::orderBy("created_at", "DESC")->get();
 
         return view("todos.list", [
             "title" => "Lista de tarefas",
