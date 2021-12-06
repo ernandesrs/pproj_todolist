@@ -7,8 +7,8 @@
 
     <title>@yield("title") | TodoList</title>
 
-    <link rel="stylesheet" href="{{ asset("css/boxicons.css") }}">
-    <link rel="stylesheet" href="{{ asset("css/bootstrap.css") }}">
+    <link rel="stylesheet" href="{{ asset("css/boxicons.min.css") }}">
+    <link rel="stylesheet" href="{{ asset("css/bootstrap.min.css") }}">
 
     <style>
         body {
