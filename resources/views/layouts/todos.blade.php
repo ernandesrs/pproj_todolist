@@ -44,7 +44,12 @@
 
                         <div class="card-body shadow">
                             @if (session('message'))
-                                {{ session('message')['message'] }}
+                                @component('components.message')
+                                    @slot('type')
+                                        {{ session('message')['type'] }}
+                                    @endslot
+                                    {{ session('message')['message'] }}
+                                @endcomponent
                             @endif
 
                             @yield("content")
