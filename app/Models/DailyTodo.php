@@ -10,4 +10,9 @@ class DailyTodo extends Model
     use HasFactory;
 
     protected $table = "daily_todos";
+
+    public function todo(): ?Todo
+    {
+        return Todo::find($this->todos_id);
+    }
 }

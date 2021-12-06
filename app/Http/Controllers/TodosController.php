@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DailyTodo;
 use App\Models\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TodosController extends Controller
 {
@@ -15,11 +17,11 @@ class TodosController extends Controller
     //
     public function index()
     {
-        $todos = Todo::orderBy("created_at", "DESC")->get();
+        $dailyTodos = DailyTodo::where("users_id", "=", Auth::user()->id)->orderBy("created_at", "DESC")->get();
 
         return view("todos.list", [
             "title" => "Lista de tarefas",
-            "todos" => $todos
+            "dailyTodos" => $dailyTodos
         ]);
     }
 
@@ -44,23 +46,32 @@ class TodosController extends Controller
 
         $todo = new Todo();
         $todo->title = $title;
-        if (!$todo->save()) {
-            return redirect()->route("todos.index")->with("message", [
-                "type" => "danger",
-                "message" => "Erro interno ao criar sua tarefa"
-            ]);
+        if ($todo->save()) {
+            $dailyTodo = new DailyTodo();
+
+            $dailyTodo->todos_id = $todo->id;
+            $dailyTodo->users_id = Auth::user()->id;
+            if ($dailyTodo->save()) {
+                $todo->delete();
+                return redirect()->route("todos.index")->with("message", [
+                    "type" => "success",
+                    "message" => "Sua tarefa foi criada e salva com sucesso"
+                ]);
+            }
         }
 
         return redirect()->route("todos.index")->with("message", [
-            "type" => "success",
-            "message" => "Sua tarefa foi criada e salva com sucesso"
+            "type" => "danger",
+            "message" => "Erro interno ao criar sua tarefa"
         ]);
     }
 
     public function edit($id)
     {
-        $todo = Todo::find($id);
-        if (!$todo) {
+        $dailyTodo = DailyTodo::where("users_id", "=", Auth::user()->id)
+            ->where("todos_id", "=", $id)->first();
+
+        if (!$dailyTodo) {
             return redirect()->route("todos.index")->with("message", [
                 "type" => "danger",
                 "message" => "Tarefa não existe ou foi excluída"
@@ -70,7 +81,7 @@ class TodosController extends Controller
         return view("todos.edit", [
             "title" => "Editar tarefa",
             "action" => "edit",
-            "todo" => $todo
+            "todo" => $dailyTodo->todo()
         ]);
     }
 
@@ -84,14 +95,18 @@ class TodosController extends Controller
             ]);
         }
 
-        $todo = Todo::find($id);
-        if (!$todo) {
+        /** @var DailyTodo $dailyTodo */
+        $dailyTodo = DailyTodo::where("users_id", "=", Auth::user()->id)
+            ->where("todos_id", "=", $id)->first();
+
+        if (!$dailyTodo) {
             return redirect()->route("todos.index")->with("message", [
                 "type" => "danger",
                 "message" => "Tarefa não existe ou foi excluída"
             ]);
         }
 
+        $todo = $dailyTodo->todo();
         $todo->title = $title;
         if (!$todo->save()) {
             return redirect()->route("todos.edit", ["id" => $id])->with("message", [
@@ -108,14 +123,18 @@ class TodosController extends Controller
 
     public function delete($id)
     {
-        $todo = Todo::find($id);
-        if (!$todo) {
+        /** @var DailyTodo $dailyTodo */
+        $dailyTodo = DailyTodo::where("users_id", "=", Auth::user()->id)
+            ->where("todos_id", "=", $id)->first();
+
+        if (!$dailyTodo) {
             return redirect()->route("todos.index")->with("message", [
                 "type" => "danger",
                 "message" => "Tarefa não existe ou já foi excluída"
             ]);
         }
 
+        $todo = $dailyTodo->todo();
         if (!$todo->delete()) {
             return redirect()->route("todos.index")->with("message", [
                 "type" => "danger",
@@ -131,14 +150,18 @@ class TodosController extends Controller
 
     public function done($id)
     {
-        $todo = Todo::find($id);
-        if (!$todo) {
+        /** @var DailyTodo $dailyTodo */
+        $dailyTodo = DailyTodo::where("users_id", "=", Auth::user()->id)
+            ->where("todos_id", "=", $id)->first();
+
+        if (!$dailyTodo) {
             return redirect()->route("todos.index")->with("message", [
                 "type" => "danger",
                 "message" => "Tarefa não existe ou foi excluída"
             ]);
         }
 
+        $todo = $dailyTodo->todo();
         $todo->done = $todo->done ? false : true;
         if (!$todo->save()) {
             return redirect()->route("todos.index")->with("message", [

@@ -13,8 +13,11 @@
         </thead>
 
         <tbody>
-            @if ($todos)
-                @foreach ($todos as $key => $todo)
+            @if ($dailyTodos)
+                @foreach ($dailyTodos as $key => $dailyTodo)
+                    @php
+                        $todo = $dailyTodo->todo();
+                    @endphp
                     <tr>
                         <td class="text-right" style="width: 75px; font-size: 0.785rem">
                             <a class="text-{{ $todo->done ? 'success' : 'danger' }}"
