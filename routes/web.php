@@ -32,3 +32,7 @@ Route::prefix("tarefas")->group(function () {
 
     Route::get("/excluir/{id}", [TodosController::class, "delete"])->name("todos.delete");
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
