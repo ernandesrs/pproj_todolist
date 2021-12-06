@@ -52,12 +52,13 @@ class TodosController extends Controller
             $dailyTodo->todos_id = $todo->id;
             $dailyTodo->users_id = Auth::user()->id;
             if ($dailyTodo->save()) {
-                $todo->delete();
                 return redirect()->route("todos.index")->with("message", [
                     "type" => "success",
                     "message" => "Sua tarefa foi criada e salva com sucesso"
                 ]);
             }
+            
+            $todo->delete();
         }
 
         return redirect()->route("todos.index")->with("message", [
