@@ -10,13 +10,6 @@ class TodosController extends Controller
 {
     public function __construct()
     {
-        var_dump(get_class_methods(Auth()));
-        var_dump(get_class_methods(Auth()));
-        var_dump(get_class_methods(Auth()));
-        var_dump(get_class_methods(Auth()));
-        var_dump(get_class_methods(Auth()));
-        return;
-
         $this->middleware("auth");
     }
 
