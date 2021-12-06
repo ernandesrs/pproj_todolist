@@ -34,9 +34,9 @@
                                 <i class="bx bx-edit"></i>
                             </a>
                             <span class="mx-1"></span>
-                            <button class="btn btn-sm btn-danger">
+                            <a class="btn btn-sm btn-danger" href="{{ route('todos.delete', ['id' => $todo->id]) }}" title="Excluir esta tarefa">
                                 <i class="bx bx-trash"></i>
-                            </button>
+                            </a>
                         </td>
                     </tr>
                 @endforeach
