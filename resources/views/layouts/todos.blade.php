@@ -30,16 +30,40 @@
         <div class="container d-flex justify-content-center align-items-center h-100">
             <div class="row justify-content-center w-100">
                 <div class="col-12 col-md-8 col-lg-6">
-                    <div class="card">
-                        <div class="card-header d-flex">
-                            <h1 class="h5 m-0">
-                                @yield("title")
-                            </h1>
-
-                            <a class="btn btn-sm btn-success ml-auto" href="{{ route('todos.new') }}"
-                                title="Criar nova tarefa">
-                                <i class="bx bx-plus"></i>
+                    <div class="d-flex pb-3 px-4" style="font-size: 0.785rem">
+                        <span class="d-flex align-items-center">
+                            <i class="bx bxs-user mr-1"></i>
+                            <span>
+                                {{ Auth::user()->name }}
+                            </span>
+                        </span>
+                        <span class="mx-auto"></span>
+                        <span class="d-flex align-items-center">
+                            <i class="bx bx-log-out mr-1"></i>
+                            <a class="text-dark" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                Sair
                             </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                class="d-none">
+                                @csrf
+                            </form>
+                        </span>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex">
+                                <h1 class="h5 m-0">
+                                    @yield("title")
+                                </h1>
+
+                                <a class="btn btn-sm btn-success ml-auto" href="{{ route('todos.new') }}"
+                                    title="Criar nova tarefa">
+                                    <i class="bx bx-plus"></i>
+                                </a>
+                            </div>
                         </div>
 
                         <div class="card-body shadow">
@@ -60,8 +84,8 @@
         </div>
     </main>
 
-    <script src="{{ asset("js/jquery.min.js") }}"></script>
-    <script src="{{ asset("js/bootstrap.bundle.min.js") }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>
