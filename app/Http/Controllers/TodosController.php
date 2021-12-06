@@ -48,7 +48,7 @@ class TodosController extends Controller
 
         return redirect()->route("todos.index")->with("message", [
             "type" => "success",
-            "message" => "Tarefa '{$todo->title}' criada"
+            "message" => "Sua tarefa foi criada e salva com sucesso"
         ]);
     }
 
