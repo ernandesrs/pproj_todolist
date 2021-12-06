@@ -1,6 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/boxicons.css": "/css/boxicons.css",
-    "/css/bootstrap.css": "/css/bootstrap.css",
+    "/js/jquery.min.js": "/js/jquery.min.js",
+    "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",
+    "/css/boxicons.min.css": "/css/boxicons.min.css",
+    "/css/bootstrap.min.css": "/css/bootstrap.min.css",
     "/css/app.css": "/css/app.css"
 }

@@ -16,6 +16,8 @@ mix.js('resources/js/app.js', 'public/js')
         //
     ])
 
-    .css("node_modules/bootstrap/dist/css/bootstrap.css", "public/css")
-    .css("node_modules/boxicons/css/boxicons.css", "public/css")
+    .js("node_modules/jquery/dist/jquery.min.js", "public/js")
+    .css("node_modules/bootstrap/dist/css/bootstrap.min.css", "public/css")
+    .js("node_modules/bootstrap/dist/js/bootstrap.bundle.min.js", "public/js")
+    .css("node_modules/boxicons/css/boxicons.min.css", "public/css")
     ;
