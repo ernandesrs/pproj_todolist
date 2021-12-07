@@ -7,7 +7,7 @@ Este é um pequeno projeto de 'lista de tarefas', criada com o objetivo de apren
 
 ## INSTALANDO E EXECUTANDO A APLICAÇÃO
 1. Clone o projeto para a pasta do seu servidor local;
-2. Utilize o modelo /extras/todolist_db.mwb para criar o banco de dados e tabelas para a aplicação;
-3. Copie e renomeie o arquivo de configuração **.env.example** para **.env**, e faça as devidas parametrizações(APP_NAME, DB_DATABASE, DB_USERNAME, DB_PASSWORD);
-4. Execute os comandos `composer update` e `npm install` para instalar os componentes necessários e
+2. Copie e renomeie o arquivo de configuração **.env.example** para **.env**, e faça as devidas parametrizações(APP_NAME, DB_DATABASE, DB_USERNAME, DB_PASSWORD);
+3. Execute os comandos `composer update` e `npm install` para instalar os componentes necessários ;
+4. Crie o banco de dados e então execute `php artisan migrate` para criar as tabelas necessárias e
 5. Agora basta executar `php artisan serve` e acessar o projeto pelo link disponibilizado após a execução do comando.
